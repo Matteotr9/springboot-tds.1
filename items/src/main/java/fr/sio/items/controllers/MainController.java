@@ -3,16 +3,18 @@ package fr.sio.items.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import fr.sio.items.models.Element;
 
-@controller
+@Controller
 @SessionAttributes("items")
 public class MainController {
 	@GetMapping
@@ -26,9 +28,11 @@ public class MainController {
 	}
 
 	@GetMapping("add/{name}")
-	public @ResponseBody String addItem(@PathVariable String name, @SessionAttribute List<Element> items) {
+	public RedirectView addItem(@PathVariable String name, @SessionAttribute List<Element> items,
+			RedirectAttributes attrs) {
 		items.add(new Element(name));
-		return "Element ajouté";
+		attrs.addFlashAttribute("msg", "Elément" + name + "ajouté");
+		return new RedirectView("/");
 
 	}
 

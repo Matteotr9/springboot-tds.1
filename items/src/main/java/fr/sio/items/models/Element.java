@@ -4,7 +4,7 @@ public class Element {
 	private String nom;
 	private int evaluation;
 
-	public Element() {
+	public Element(String nom) {
 		this.nom = nom;
 	}
 

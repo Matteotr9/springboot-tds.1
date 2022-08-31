@@ -8,9 +8,13 @@ ca marche
 </p>
 </div>
 {{/msg}}
+<a class="ui orange button" href="/add">Ajouter un élément...</a>
 <ul class="ui list">
 {{#items}}
-<li class="item">{{nom}}</li>
-{{/items}}
+<li class="item">{{nom}}-<div class="ui rating" data-rating ="10" data-rating="{{evaluation}}"></div></li>
+{{/ items}}
 </ul>
+{{# form}}
+{{>/addform}}
+{{/ form}}
 {{>/include/footer}}
